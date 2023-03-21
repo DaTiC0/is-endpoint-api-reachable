@@ -5,9 +5,13 @@
 import requests
 import pandas as pd
 import logging
+import datetime
 
 # Create and configure logger
-logging.basicConfig(filename="merchant.log",
+# now = datetime.datetime.now()
+# logfilename = now.strftime("%Y-%m-%d-%H-%M-%S") + '.log'
+logfilename = 'endpoint-check.log'
+logging.basicConfig(filename=logfilename,
                     format='%(asctime)s %(message)s',
                     filemode='w')
 
@@ -18,32 +22,30 @@ logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 # Test messages
-logger.debug("Harmless debug Message")
-logger.info("Just an information")
-logger.warning("Its a Warning")
-logger.error("Did you try to divide by zero")
-logger.critical("Internet is down")
+logger.info("Logging started")
 
+# define CSV file path
+CSV = 'merchant_api.csv'
 
 # Main function
 def main():
-
-    df = pd.read_csv("merchant_api.csv")
+    # read the csv file
+    df = pd.read_csv(CSV)
     # define a variable to store the previous url and status and status code
     previous_url = ''
     previous_status = ''
     previous_status_code = ''
-    # iterate over the merchants and update the status
+    # iterate over the Endpoint and update the status
     for index, row in df.iterrows():
         # print the index
-        print('Merchant Number: ', index)
+        print('Endpoint Number: ', index)
         # get the url
         url = row['Endpoint']
         # check if the url is same as previous url
         if url == previous_url:
-            # print the same url as previous Merchant
-            print('Same URL as previous Merchant')
-            # if same then update the reachable status as previous merchant
+            # print the same url as previous Endpoint
+            print('Same URL as previous Endpoint')
+            # if same then update the reachable status as previous Endpoint
             df.at[index, 'Online'] = previous_status
             df.at[index, 'Status Code'] = previous_status_code
             # continue to next iteration
@@ -72,7 +74,7 @@ def main():
                 df.at[index, 'Online'] = 'YES'
                 df.at[index, 'Status Code'] = r.status_code
                 df.at[index, 'Comment'] = response_text
-                logger.info("Merchant is reachable")
+                logger.info("Endpoint is reachable")
                 logger.info(r.text)
             # If status code is not 200 then update the status as not reachable but Online
             else:
@@ -80,7 +82,7 @@ def main():
                 df.at[index, 'Status Code'] = r.status_code
                 df.at[index, 'Comment'] = response_text
                 logger.warning(
-                    "Merchant is reachable but status code is not 200")
+                    "Endpoint is reachable but status code is not 200")
                 logger.info(r.text)
 
         # except the timeout exception
@@ -117,7 +119,7 @@ def main():
     # write the updated csv file
     print('Writing the updated csv file')
     logger.info("Writing the updated csv file")
-    df.to_csv('merchant_api.csv', index=False)
+    df.to_csv(CSV, index=False)
 
 def handle_error(error_type, index, comment, logger, df):
     status = 'ERROR'

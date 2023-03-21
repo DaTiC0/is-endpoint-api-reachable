@@ -1,6 +1,8 @@
 merchant.log
 merchant_api.csv
 merchant_api.csv.bak
+endpoint-check.log
+endpoint-check.log.bak
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
