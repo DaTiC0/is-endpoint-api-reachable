@@ -1,3 +1,7 @@
+merchant.log
+merchant_api.csv
+merchant_api.csv.bak
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
