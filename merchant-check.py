@@ -65,18 +65,20 @@ def main():
             previous_status_code = r.status_code
             # if reachable then update the status as reachable
             print(r.status_code)
+            # Convert response text to string
+            response_text = str(r.text)
             # If status code is 200 then update the status as reachable
             if r.status_code == 200:
                 df.at[index, 'Online'] = 'YES'
                 df.at[index, 'Status Code'] = r.status_code
-                df.at[index, 'Comment'] = r.text
+                df.at[index, 'Comment'] = response_text
                 logger.info("Merchant is reachable")
                 logger.info(r.text)
             # If status code is not 200 then update the status as not reachable but Online
             else:
                 df.at[index, 'Online'] = 'YES'
                 df.at[index, 'Status Code'] = r.status_code
-                df.at[index, 'Comment'] = r.text
+                df.at[index, 'Comment'] = response_text
                 logger.warning(
                     "Merchant is reachable but status code is not 200")
                 logger.info(r.text)
@@ -117,6 +119,15 @@ def main():
     logger.info("Writing the updated csv file")
     df.to_csv('merchant_api.csv', index=False)
 
+def handle_error(error_type, index, comment, logger, df):
+    status = 'ERROR'
+    if error_type == requests.exceptions.Timeout:
+        status = 'NO'
+    elif error_type == requests.exceptions.ConnectionError:
+        comment = 'Connection Error'
+    df.at[index, 'Online'] = status
+    df.at[index, 'Comment'] = comment
+    logger.error(comment)
 
 # call the main function
 if __name__ == '__main__':
