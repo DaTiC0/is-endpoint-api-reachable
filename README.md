@@ -1,6 +1,6 @@
-# is-merchant-api-reachable
+# is-endpoint-api-reachable
 
-Checking Merchant API is reachable or not
+Checking Endpoint API is reachable or not
 
 ## Description
 
