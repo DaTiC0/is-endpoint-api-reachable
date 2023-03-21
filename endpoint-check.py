@@ -1,4 +1,4 @@
-# Testing the Merchant API is reachable or not
+# Testing the Endpoint API is reachable or not
 # Author: DaTi_Co
 
 # import the necessary packages
