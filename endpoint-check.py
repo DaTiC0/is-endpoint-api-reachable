@@ -5,7 +5,7 @@
 import requests
 import pandas as pd
 import logging
-import datetime
+# import datetime
 
 # Create and configure logger
 # now = datetime.datetime.now()
@@ -25,7 +25,7 @@ logger.setLevel(logging.DEBUG)
 logger.info("Logging started")
 
 # define CSV file path
-CSV = 'merchant_api.csv'
+CSV = 'endpoint_api.csv'
 
 # Main function
 def main():

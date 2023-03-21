@@ -3,8 +3,8 @@
 import pandas as pd
 
 # Defile the path of the csv file
-CSV = 'merchant_api.csv'
-EXCEL = 'merchant_api.xlsx'
+CSV = 'endpoint_api.csv'
+EXCEL = 'endpoint_api.xlsx'
 
 # Read the csv file
 read_file = pd.read_csv(CSV)
