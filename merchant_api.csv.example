@@ -1,2 +1,2 @@
-Merchant Id,Business Id,Driver,Endpoint,Name,Cashbox Name,Status,Contact Type,Description,Online,Status Code,Comment
+Endpoint Id,Id,Driver,Endpoint,Name,Box Name,Status,Contact Type,Description,Online,Status Code,Comment
 XXX,YYY,ZZZ,https://localhost,AAA,BBB,x,y,z,YES,200,OK
