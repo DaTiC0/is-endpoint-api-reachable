@@ -14,7 +14,7 @@ Return NO if Endpoint URL is not reachable
 
 - pandas
 
-*Last three columunts is mandatory:*
+*Last three columunts is mandatory in CSV file:*
 
 - Online
 - Status Code
