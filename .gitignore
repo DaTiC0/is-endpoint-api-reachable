@@ -4,6 +4,10 @@ endpoint_api.xlsx
 endpoint-check.log
 endpoint-check.log.bak
 
+merchant_api.xlsx
+merchant_api.csv
+merchant_api.csv.bak
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

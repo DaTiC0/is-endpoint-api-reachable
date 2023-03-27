@@ -61,8 +61,16 @@ def main():
         previous_url = url
         # check if the url is reachable or not
         try:
-            # send the request to the url ignoring the SSL certificate
-            r = requests.get(url, timeout=2, verify=False)
+            # Check request type
+            request_type = row['GET/POST']
+            # If request type is POST
+            if request_type == 'POST':
+                # Send the request to the url ignoring the SSL certificate
+                r = requests.post(url, timeout=2, verify=False)
+            # else request type is GET
+            else:
+                # Send the request to the url ignoring the SSL certificate
+                r = requests.get(url, timeout=2, verify=False)
             # update the previous status and status code
             previous_status_code = r.status_code
             # if reachable then update the status as reachable
