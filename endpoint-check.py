@@ -31,6 +31,8 @@ CSV = 'endpoint_api.csv'
 def main():
     # read the csv file
     df = pd.read_csv(CSV)
+    # Convert all columns to string data type
+    df = df.astype(str)
     # define a variable to store the previous url and status and status code
     previous_url = ''
     previous_status = ''
